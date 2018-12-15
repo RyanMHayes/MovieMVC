@@ -39,11 +39,7 @@ namespace CheeseMVC.ViewModels
                     Text = category.Name.ToString()
                 });
 
-            //CheeseTypes.Add(new SelectListItem
-            //{
-            //    Value = ((int)CheeseType.Soft).ToString(),
-            //    Text = CheeseType.Soft.ToString()
-            //});
+            
         }
 
 

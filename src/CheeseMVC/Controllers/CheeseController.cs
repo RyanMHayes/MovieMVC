@@ -30,8 +30,7 @@ namespace CheeseMVC.Controllers
 
         public IActionResult Add()
         {
-            AddCheeseViewModel addCheeseViewModel = 
-                new AddCheeseViewModel(context.Categories.ToList()); 
+            AddCheeseViewModel addCheeseViewModel = new AddCheeseViewModel(context.Categories.ToList()); 
             return View(addCheeseViewModel);
         }
 
@@ -42,8 +41,10 @@ namespace CheeseMVC.Controllers
 
             if (ModelState.IsValid)
             {
-                CheeseCategory newCheeseCategory = context.Categories.FirstOrDefault(c => c.ID == addCheeseViewModel.CategoryID); //used to be Single instead of FirstOrDefault
-                
+                CheeseCategory newCheeseCategory = context.Categories.SingleOrDefault(c => c.ID == addCheeseViewModel.CategoryID); //used to be Single instead of FirstOrDefault
+                                                                    //Above, the assignement said to use c, but it seems to work for me using context.
+
+
                 // Add the new cheese to my existing cheeses
                 Cheese newCheese = new Cheese
                 {
