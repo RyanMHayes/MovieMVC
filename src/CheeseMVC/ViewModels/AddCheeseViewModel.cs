@@ -46,6 +46,15 @@ namespace CheeseMVC.ViewModels
 
         public AddCheeseViewModel()
         {
+            // foreach (CheeseCategory category in )
+
+
+            // <option value="0">Hard</option>
+                //Categories.Add(new SelectListItem {
+                    //Value = category.ID.ToString(),
+                    //Text = category.Name.ToString()
+                //});
+
         }
     }
 }
