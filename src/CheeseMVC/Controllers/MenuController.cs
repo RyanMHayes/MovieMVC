@@ -7,6 +7,7 @@ using CheeseMVC.Models;
 using CheeseMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+// using Microsoft.EntityFrameworkCore.Tools.DotNet;
 
 namespace CheeseMVC.Controllers
 {
@@ -14,7 +15,7 @@ namespace CheeseMVC.Controllers
     {
         private readonly CheeseDbContext context;
 
-        public MenuController(MenuController dbContext)
+        public MenuController(CheeseDbContext dbContext)
         {
             context = dbContext;
         }
@@ -22,9 +23,9 @@ namespace CheeseMVC.Controllers
 
         public IActionResult Index()
         {
-            IList<Menu> menus = context.Menus.ToList();
+            List<Menu> menus = context.Menus.ToList(); //I had it as an IList, but I changed it to a List.  Which way?
 
-            return View();
+            return View(menus);
         }
 
 
