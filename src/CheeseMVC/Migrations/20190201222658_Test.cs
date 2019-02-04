@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace CheeseMVC.Migrations
+namespace MovieMVC.Migrations
 {
-    public partial class AddMenu : Migration
+    public partial class Test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

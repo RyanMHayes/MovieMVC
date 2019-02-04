@@ -1,0 +1,36 @@
+﻿@model List<MovieMVC.Models.Movie>
+@*VIEW, INDEX ****@
+
+<h1>@ViewBag.Title</h1>
+
+<table class="table">
+
+    <tr>
+        <th>Title</th>
+        <th>Streaming Service</th>
+        <td>Genre</td>
+    </tr>
+
+
+
+
+
+
+    @foreach (var movie in Model)
+    {
+        <tr>
+            <td>@movie.Title</td>
+            <td>@movie.StreamingService</td>
+            <td>@movie.Genre.Genre</td>
+        </tr>
+    }
+
+</table>
+
+@if (Model.Count == 0)
+{
+    <p>No movies have been added yet!</p>
+}
+
+
+<a asp-controller="Genre" asp-action="Add">Add Genre</a> | <a asp-controller="Movie" asp-action="Add">Add Movie</a>

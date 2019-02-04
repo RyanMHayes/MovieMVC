@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CheeseMVC.Models
+namespace MovieMVC.Models
 {
     public class Menu
     {

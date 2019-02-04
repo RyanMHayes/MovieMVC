@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CheeseMVC.Data;
-using CheeseMVC.Models;
-using CheeseMVC.ViewModels;
+using MovieMVC.Data;
+using MovieMVC.Models;
+using MovieMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 // using Microsoft.EntityFrameworkCore.Tools.DotNet;
-
-namespace CheeseMVC.Controllers
+/*
+ * 
+ * 
+namespace MovieMVC.Controllers
 {
     public class MenuController : Controller
     {
-        private readonly CheeseDbContext context;
+        private readonly MovieDbContext context;
 
-        public MenuController(CheeseDbContext dbContext)
+        public MenuController(MovieDbContext dbContext)
         {
             context = dbContext;
         }
@@ -53,7 +55,7 @@ namespace CheeseMVC.Controllers
                 context.Menus.Add(newMenu);
                 context.SaveChanges();
 
-                return Redirect("/Menu/ViewMenu/" + newMenu.ID);
+                return Redirect("/Menu");   //What I had: return Redirect("/Menu/ViewMenu/" + newMenu.ID); [I changed it to the video's line]
             }
 
             return View(addMenuViewModel);
@@ -66,25 +68,25 @@ namespace CheeseMVC.Controllers
             List<CheeseMenu> items = context
                 .CheeseMenus
                 .Include(item => item.Cheese)
-                .Where(CheeseMenu => CheeseMenu.MenuID == id)
+                .Where(cm => cm.MenuID == id)       // I wrote down CheeseMenu.  The video has cm
                 .ToList();
 
             Menu menu = context.Menus.Single(m => m.ID == id);
 
-            ViewMenuViewModel viewMenuViewModel = new ViewMenuViewModel
+            ViewMenuViewModel viewModel = new ViewMenuViewModel
             {
                 Menu = menu,
                 Items = items
             };
 
-            return View(viewMenuViewModel);
+            return View(viewModel);
         }
 
 
         public IActionResult AddItem (int id)
         {
             Menu menu = context.Menus.Single(m => m.ID == id); //Check this method.  Do I need more?
-            List<Cheese> cheeses = context.Cheeses.ToList();
+            List<Movie> cheeses = context.Cheeses.ToList();
             return View(new AddMenuItemViewModel(menu, cheeses));
 
         }
@@ -126,3 +128,5 @@ namespace CheeseMVC.Controllers
 
     
 }
+
+*/

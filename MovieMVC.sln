@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E4540E26-4149-4E03-AA4B-FDC5D690A52F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheeseMVC", "src\CheeseMVC\CheeseMVC.csproj", "{6AFD9555-CD44-4530-AEFF-15264D392DF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieMVC", "src\CheeseMVC\MovieMVC.csproj", "{6AFD9555-CD44-4530-AEFF-15264D392DF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,5 +34,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6AFD9555-CD44-4530-AEFF-15264D392DF0} = {E4540E26-4149-4E03-AA4B-FDC5D690A52F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E2607F4-DD79-4BC5-87B8-CFCB98846F6B}
 	EndGlobalSection
 EndGlobal

@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CheeseMVC.Data;
+using MovieMVC.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace CheeseMVC
+namespace MovieMVC
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace CheeseMVC
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<CheeseDbContext>(options =>
+            services.AddDbContext<MovieDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Add framework services.
@@ -38,7 +38,7 @@ namespace CheeseMVC
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CheeseDbContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, MovieDbContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -59,7 +59,7 @@ namespace CheeseMVC
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Cheese}/{action=Index}/{id?}");
+                    template: "{controller=Movie}/{action=Index}/{id?}");
             });
             context.Database.EnsureCreated();
         }

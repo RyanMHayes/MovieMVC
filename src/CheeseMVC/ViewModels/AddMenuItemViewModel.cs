@@ -1,11 +1,14 @@
-﻿using CheeseMVC.Models;
+﻿using MovieMVC.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CheeseMVC.ViewModels
+
+/*
+
+namespace MovieMVC.ViewModels
 {
     public class AddMenuItemViewModel
     {
@@ -17,7 +20,7 @@ namespace CheeseMVC.ViewModels
 
 
 
-        public AddMenuItemViewModel(Menu menu, IEnumerable<Cheese> cheeses)
+        public AddMenuItemViewModel(Menu menu, IEnumerable<Movie> cheeses)
         {
 
             Cheeses = new List<SelectListItem>();
@@ -48,3 +51,6 @@ namespace CheeseMVC.ViewModels
     }
 
 }
+
+
+*/

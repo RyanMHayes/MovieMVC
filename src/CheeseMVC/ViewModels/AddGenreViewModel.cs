@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace MovieMVC.ViewModels
 {
-    public class AddMenuViewModel
+    public class AddGenreViewModel
     {
         [Required]
-        [Display(Name="Menu Name")]
-        public string Name { get; set; }
+        [Display(Name = "Genre")]
+        public string Name { get; set; }  //This was Name.  Fix this elsewhere in the View [Never mind]
+
+
+
     }
-
-
-
 }

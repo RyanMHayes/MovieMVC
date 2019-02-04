@@ -1,4 +1,11 @@
-﻿@model CheeseMVC.ViewModels.ViewMenuViewModel
+﻿
+
+
+
+
+
+
+@*@model MovieMVC.ViewModels.ViewMenuViewModel
 @{
     ViewBag.Title = Model.Menu.Name;
 }
@@ -18,3 +25,6 @@
 }
 
 <p><a asp-controller="Menu" asp-action="AddItem" asp-route-id="@Model.Menu.ID">Add Item</a></p>
+
+
+*@

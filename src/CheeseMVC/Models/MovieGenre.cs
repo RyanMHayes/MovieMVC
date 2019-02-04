@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CheeseMVC.Models
+namespace MovieMVC.Models
 {
-    public class CheeseCategory
+    public class MovieGenre
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-        public IList<Cheese> Cheeses { get; set; }
+        public string Genre { get; set; }
+        // public IList<Cheese> Cheeses { get; set; }
+
+
+
+
+
+        //public int ID { get; set; }
+        //public string Name { get; set; }
+        //public IList<Movie> Cheeses { get; set; }
+
 
         // everything below has not been asked of me to do yet, but it's in the video
 

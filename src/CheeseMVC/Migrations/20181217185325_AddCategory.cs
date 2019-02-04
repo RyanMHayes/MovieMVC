@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CheeseMVC.Migrations
+namespace MovieMVC.Migrations
 {
     public partial class AddCategory : Migration
     {

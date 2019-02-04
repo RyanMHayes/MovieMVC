@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MovieMVC.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class AddMenu : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
