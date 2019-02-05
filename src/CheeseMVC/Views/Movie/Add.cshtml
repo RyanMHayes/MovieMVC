@@ -22,6 +22,12 @@
         <select asp-for="GenreID" asp-items="Model.Genres"></select>
     </div>
 
+    <p>If you don't see a genre you're looking for, try <a asp-controller="Genre" asp-action="Add">adding</a> one!</p>
+
     <input type="submit" value="Add Movie" />
 
 </form>
+
+
+
+@*<a asp-controller="Genre" asp-action="Add">Add Genre</a> *@

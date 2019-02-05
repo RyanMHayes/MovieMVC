@@ -1,6 +1,6 @@
 ﻿@model MovieMVC.ViewModels.AddGenreViewModel
 
-<h2>If there's a genre you don't see, add it!</h2>
+<h2>If there's a genre you didn't see, add it!</h2>
 
 <form asp-controller="Genre" asp-action="Add" method="post">
 
@@ -9,7 +9,7 @@
         <input class="form-control" asp-for="Name" />
         <span asp-validation-for="Name"></span>
     </div>
-   
+
     <input type="submit" value="Add Genre" />
 
 </form>
