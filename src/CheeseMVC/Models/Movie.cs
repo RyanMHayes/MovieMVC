@@ -13,5 +13,6 @@ namespace MovieMVC.Models
         public MovieGenre Genre { get; set; }
         public int GenreID { get; set; }
 
+
     }
 }

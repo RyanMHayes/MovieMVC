@@ -1,0 +1,28 @@
+﻿@model MovieMVC.ViewModels.SearchMovieViewModel
+
+<h1>@Model.Title</h1>
+
+@if (Model.Movies != null)
+{
+
+    <h3>@Model.Movies.Count Result(s)</h3>
+
+    @foreach (var movie in Model.Movies)
+    {
+        <table class="movie-listing">
+            <tr>
+                <td>Title</td>
+                <td>@movie.Title</td>
+            </tr>
+            <tr>
+                <td>Streaming Service</td>
+                <td>@movie.StreamingService</td>
+            </tr>
+            <tr>
+                <td>Genre</td>
+                <td>@movie.Genre</td>
+            </tr>
+
+        </table>
+    }
+}

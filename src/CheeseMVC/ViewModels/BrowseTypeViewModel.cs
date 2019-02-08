@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace MovieMVC.ViewModels
 {
-    public class ViewMenuViewModel
+    public class BrowseTypeViewModel : BaseViewModel
     {
-        public Menu Menu { get; set; }
-        public IList<CheeseMenu> Items { get; set; }
+        public BrowseType Filter { get; set; }
+
+        public IEnumerable<MovieFilter> MovieFilters { get; set; }
 
     }
 }
