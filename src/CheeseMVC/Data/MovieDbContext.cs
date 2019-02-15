@@ -11,6 +11,8 @@ namespace MovieMVC.Data
     {
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MovieGenre> Genres { get; set; }
+        public DbSet<MovieStreamingService> StreamingServices { get; set; }
+        public DbSet<MovieFilter> Filters { get; set; }
 
         public MovieDbContext(DbContextOptions<MovieDbContext> options) : base(options)
         { }

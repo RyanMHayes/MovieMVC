@@ -10,7 +10,7 @@ namespace MovieMVC.ViewModels
     {
         public BrowseType Filter { get; set; }
 
-        public IEnumerable<MovieFilter> MovieFilters { get; set; }
+        public IEnumerable<MovieFilter> MovieFilters { get; set; } //change to Fields or no???
 
     }
 }

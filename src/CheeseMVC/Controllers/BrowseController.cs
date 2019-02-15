@@ -12,7 +12,7 @@ namespace MovieMVC.Controllers
 {
     public class BrowseController : Controller
     {
-        private MovieDbContext context;
+        private readonly MovieDbContext context;
 
         public BrowseController(MovieDbContext dbContext)
         {
@@ -22,83 +22,105 @@ namespace MovieMVC.Controllers
 
         public IActionResult Index()
         {
-            BrowseTypeViewModel browseTypeViewModel = new BrowseTypeViewModel();
-            browseTypeViewModel.Title = "Browse by: ";
+            //BrowseTypeViewModel browseTypeViewModel = new BrowseTypeViewModel();
+            //browseTypeViewModel.Title = "Browse by: ";
 
-            return View(browseTypeViewModel);
+            //return View(browseTypeViewModel);
 
-            //JobFieldsViewModel jobFieldsViewModel = new JobFieldsViewModel();
-            //jobFieldsViewModel.Title = "View Job Fields";
 
-            //return View(jobFieldsViewModel);
+            IList<MovieFilter> filters = context.Filters.ToList();
+
+            return View(filters);
+
+
         }
 
 
-        public IActionResult Listings(BrowseType filter)
+        public IActionResult FilterBy(BrowseType filter)
         {
+            SearchMovieViewModel movieViewModel = new SearchMovieViewModel();
+
+            IEnumerable<MovieFilter> fields;
+
+            //************Maybe stop trying to use the Techjobs method.
+            //Maybe try to access these things just through Dbcontext
+
+            //****Really, stop.  Try using LINQ to access the necessary data.
+
+
+            //switch (filter)
+            //{
+            //    case BrowseType.Genre:
+            //        fields = context.Genres.Include(context => context.Genre).ToList().Cast<MovieFilter>();
+            //        break;
+            //    case BrowseType.StreamingService:
+            //        fields = context.StreamingServices.ToList().Cast<MovieFilter>();
+            //        break;
+
+            //}
+
+            //movieViewModel.Fields = context.Genres.ToList().Cast<MovieFilter>();
+            movieViewModel.Fields = context.Genres.Include(context => context.Genre).ToList().Cast<MovieFilter>();
+            movieViewModel.Title = "Movies filtered by" + filter;
+            movieViewModel.Filter = filter;
+
+            return View(movieViewModel);
+
+            /*
+
             if (filter.Equals(BrowseType.Genre))
             {
-                SearchMovieViewModel movieViewModel = new SearchMovieViewModel();
+                //fields = context.Genres.ToList().Cast<MovieFilter>();
 
-
-
-                movieViewModel.Movies = context.Movies.ToList();
-                movieViewModel.Title = "All movies by"; //*********
-                return View(/*"Movies",*/ movieViewModel);
+                IList<MovieFilter> fields = context.Genres.Include(context => context.Genre).ToList();
 
             }
 
             else
             {
-                
+                fields = context.StreamingServices.ToList().Cast<MovieFilter>();
 
+            }
+
+            //movieViewModel.Fields = fields;
+            movieViewModel.Title = "Movies filtered by" + filter;
+            movieViewModel.Filter = filter;
+
+            return View(movieViewModel);
+
+            */
+
+        }
+
+        public IActionResult MovieListings(BrowseType filter)
+        {
+            if (filter.Equals(BrowseType.Genre))
+            {
+
+                SearchMovieViewModel movieViewModel = new SearchMovieViewModel();
+                movieViewModel.Genres = context.Genres.ToList();
+                movieViewModel.Title = "Choose a " + filter; //*********
+                return View(movieViewModel);
+
+            }
+
+            else
+            {
 
                 return View();
 
             }
 
-
-
         }
+
+
+       
 
     }
 
 }
 
 
-
-            /* switch (filter)
-            {
-                case BrowseType.StreamingService:
-                    movies = MovieMVC.Data.Models.StreamingService.ToList().Cast<MovieFilter>();
-                    break;
-
-                case JobFieldType.Location:
-                    fields = jobData.Locations.ToList().Cast<JobField>();
-                    break;
-
-
-
-                case JobFieldType.CoreCompetency:
-                    fields = jobData.CoreCompetencies.ToList().Cast<JobField>();
-                    break;
-                case JobFieldType.PositionType:
-                default:
-                    fields = jobData.PositionTypes.ToList().Cast<JobField>();
-                    break;
-            }
-
-            jobFieldsViewModel.Fields = fields;
-            jobFieldsViewModel.Title = "All " + filter + " Values";
-            jobFieldsViewModel.Column = column;
-
-            return View(jobFieldsViewModel);
-        }
-
-
-        }
-
-    }
-}
-
-    */
+                //movieViewModel.Movies = context.Movies.ToList();
+                //movieViewModel.Title = "All movies by"; //*********
+                //return View(/*"Movies",*/ movieViewModel);

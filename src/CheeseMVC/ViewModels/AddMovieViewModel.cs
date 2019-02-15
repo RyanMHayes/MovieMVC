@@ -17,7 +17,7 @@ namespace MovieMVC.ViewModels
         public string Name { get; set; }
 
         [Display(Name = "Streaming Service(s) Providing the Above Movie")]
-        public string StreamingService { get; set; }
+        public MovieStreamingService StreamingService { get; set; } //I change type string to type MovieStreamingService.
 
 
         [Required]

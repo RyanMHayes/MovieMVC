@@ -2,15 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieMVC.Models
 {
     public class MovieFilter
     {
         public int ID { get; set; }
-        private static int nextId = 1;
+        private static int nextId = 1; //??????
 
-        public string Value { get; set; }
+        public MovieGenre Genre { get; set; } //I added this to try.
+        public int GenreID { get; set; } //I also tried this.
+
+        public MovieStreamingService StreamingService { get; set; }
+        public int StreamingServiceID { get; set; }
+
+
+    }
+
+}
+
+        //[ForeignKey("MovieGenre")]
+
+
+        /*public string Value { get; set; }
 
         public MovieFilter()
         {
@@ -53,3 +68,5 @@ namespace MovieMVC.Models
 
     }
 }
+
+*/
