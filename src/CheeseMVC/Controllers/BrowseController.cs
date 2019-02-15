@@ -28,7 +28,7 @@ namespace MovieMVC.Controllers
             //return View(browseTypeViewModel);
 
 
-            IList<MovieFilter> filters = context.Filters.ToList();
+            IList<MovieFilter> filters = context.MovieFilters.ToList();
 
             return View(filters);
 

@@ -19,5 +19,14 @@
   <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
   <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
 </ItemGroup>
+  
+<ItemGroup>
+  <Content Update="Views\Streaming Service\Add.cshtml">
+    <Pack>$(IncludeRazorContentInPack)</Pack>
+  </Content>
+  <Content Update="Views\Streaming Service\Index.cshtml">
+    <Pack>$(IncludeRazorContentInPack)</Pack>
+  </Content>
+</ItemGroup>
 
 </Project>

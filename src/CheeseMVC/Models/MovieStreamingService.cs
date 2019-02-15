@@ -12,5 +12,7 @@ namespace MovieMVC.Models
         public int ID { get; set; }
         public string StreamingService { get; set; }
 
+        public IList<MovieFilter> MovieFilters { get; set; }
+
     }
 }

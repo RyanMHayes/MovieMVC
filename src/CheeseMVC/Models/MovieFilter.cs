@@ -9,7 +9,7 @@ namespace MovieMVC.Models
     public class MovieFilter
     {
         public int ID { get; set; }
-        private static int nextId = 1; //??????
+        //private static int nextId = 1; //??????
 
         public MovieGenre Genre { get; set; } //I added this to try.
         public int GenreID { get; set; } //I also tried this.

@@ -9,6 +9,13 @@ namespace MovieMVC.Models
     {
         public int ID { get; set; }
         public string Genre { get; set; }
+
+        public IList<Movie> Movies { get; set; }
+
+        public IList<MovieFilter> MovieFilters { get; set; }
+
+
+
         // public IList<Cheese> Cheeses { get; set; }
 
 
