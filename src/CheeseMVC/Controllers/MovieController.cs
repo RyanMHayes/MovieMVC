@@ -32,7 +32,7 @@ namespace MovieMVC.Controllers
 
         public IActionResult Add()
         {
-            AddMovieViewModel addMovieViewModel = new AddMovieViewModel(context.Genres.ToList());
+            AddMovieViewModel addMovieViewModel = new AddMovieViewModel(context.Genres.ToList(), context.StreamingServices.ToList());
             return View(addMovieViewModel);
         }
 
@@ -44,13 +44,16 @@ namespace MovieMVC.Controllers
             if (ModelState.IsValid)
             {
                 MovieGenre newMovieGenre = context.Genres.SingleOrDefault(c => c.ID == addMovieViewModel.GenreID);
+                MovieStreamingService newMovieStreamingService = context.StreamingServices.SingleOrDefault(c => c.ID == addMovieViewModel.StreamingServiceID);
+
+                //*********Do I need the same for Streaming Service?
 
 
                 // Add the new cheese to my existing cheeses
                 Movie newMovie = new Movie
                 {
                     Title = addMovieViewModel.Name,
-                    StreamingService = addMovieViewModel.StreamingService,
+                    StreamingService = newMovieStreamingService,
                     Genre = newMovieGenre
                 };
 

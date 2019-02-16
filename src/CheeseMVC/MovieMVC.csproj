@@ -21,10 +21,10 @@
 </ItemGroup>
   
 <ItemGroup>
-  <Content Update="Views\Streaming Service\Add.cshtml">
+  <Content Update="Views\StreamingService\Add.cshtml">
     <Pack>$(IncludeRazorContentInPack)</Pack>
   </Content>
-  <Content Update="Views\Streaming Service\Index.cshtml">
+  <Content Update="Views\StreamingService\Index.cshtml">
     <Pack>$(IncludeRazorContentInPack)</Pack>
   </Content>
 </ItemGroup>

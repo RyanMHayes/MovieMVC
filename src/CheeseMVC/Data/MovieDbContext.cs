@@ -20,7 +20,7 @@ namespace MovieMVC.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MovieFilter>()
+            modelBuilder.Entity<Movie>()    //Was MovieFilter
                 .HasKey(c => new { c.GenreID, c.StreamingServiceID });
         }
 

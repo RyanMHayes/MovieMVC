@@ -16,8 +16,12 @@ namespace MovieMVC.ViewModels
         [Display(Name = "Movie Title")]
         public string Name { get; set; }
 
-        [Display(Name = "Streaming Service(s) Providing the Above Movie")]
-        public MovieStreamingService StreamingService { get; set; } //I change type string to type MovieStreamingService.
+        [Required]
+        [Display(Name = "Streaming Service")]
+        public int StreamingServiceID { get; set; }
+
+        //[Display(Name = "Streaming Service(s) Providing the Above Movie")]
+        //public MovieStreamingService StreamingService { get; set; } //I change type string to type MovieStreamingService.
 
 
         [Required]
@@ -25,13 +29,15 @@ namespace MovieMVC.ViewModels
         public int GenreID { get; set; }
 
         public List<SelectListItem> Genres { get; set; }
+        public List<SelectListItem> StreamingServices { get; set; }
 
 
 
-        public AddMovieViewModel(IEnumerable<MovieGenre> genres)
+        public AddMovieViewModel(IEnumerable<MovieGenre> genres, IEnumerable<MovieStreamingService> streamingServices)
         {
 
             Genres = new List<SelectListItem>();
+            StreamingServices = new List<SelectListItem>();
 
 
             foreach (MovieGenre genre in genres)
@@ -44,6 +50,16 @@ namespace MovieMVC.ViewModels
                     Text = genre.Genre.ToString()
                 });
 
+
+            foreach (MovieStreamingService streamingService in streamingServices)
+
+                StreamingServices.Add(new SelectListItem
+                {
+                    Value = streamingService.ID.ToString(),
+                    Text = streamingService.StreamingService.ToString()
+
+                });
+
         }
 
 
@@ -51,3 +67,5 @@ namespace MovieMVC.ViewModels
         { }
     }
 }
+
+

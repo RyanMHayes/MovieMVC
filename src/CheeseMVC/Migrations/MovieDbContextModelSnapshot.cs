@@ -50,6 +50,8 @@ namespace MovieMVC.Migrations
 
                     b.HasKey("GenreID", "StreamingServiceID");
 
+                    b.HasIndex("ID");
+
                     b.HasIndex("StreamingServiceID");
 
                     b.ToTable("MovieFilters");
@@ -82,9 +84,9 @@ namespace MovieMVC.Migrations
             modelBuilder.Entity("MovieMVC.Models.Movie", b =>
                 {
                     b.HasOne("MovieMVC.Models.MovieGenre", "Genre")
-                        .WithMany()
+                        .WithMany("Movies")
                         .HasForeignKey("GenreID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade); //Was Cascade for all these.  I'm changing it to see what happens.
 
                     b.HasOne("MovieMVC.Models.MovieStreamingService", "StreamingService")
                         .WithMany()
@@ -97,6 +99,11 @@ namespace MovieMVC.Migrations
                     b.HasOne("MovieMVC.Models.MovieGenre", "Genre")
                         .WithMany("MovieFilters")
                         .HasForeignKey("GenreID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MovieMVC.Models.Movie")
+                        .WithMany("MovieFilters")
+                        .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MovieMVC.Models.MovieStreamingService", "StreamingService")
