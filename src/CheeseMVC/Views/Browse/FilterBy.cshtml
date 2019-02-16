@@ -1,16 +1,15 @@
-﻿@model MovieMVC.ViewModels.SearchMovieViewModel
-
+﻿@model MovieMVC.ViewModels.BrowseTypeViewModel 
 <h1>@Model.Title</h1>
 
 <table>
-    @foreach (var field in Model.Fields)
+    @foreach (var movieFilter in Model.MovieFilters)
     {
         <tr>
             <td>
                 <a asp-controller="Browse"
                    asp-action="MovieListings"
                    asp-route-filter="@Model.Filter"
-                   asp-route-value="@field.Value">@field.Value</a>
+                   asp-route-value="@movieFilter">@movieFilter</a>
             </td>
         </tr>
     }

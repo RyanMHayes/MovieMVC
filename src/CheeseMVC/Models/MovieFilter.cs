@@ -11,13 +11,15 @@ namespace MovieMVC.Models
         public int ID { get; set; }
         //private static int nextId = 1; //??????
 
-        [ForeignKey("GenreID")]
+        //[ForeignKey("GenreID")]
         public MovieGenre Genre { get; set; } //I added this to try.
-        public int? GenreID { get; set; } //I also tried this.
+        public int GenreID { get; set; } //I also tried this.
 
-        [ForeignKey("StreamingServiceID")]
+        //[ForeignKey("StreamingServiceID")]
         public MovieStreamingService StreamingService { get; set; }
-        public int? StreamingServiceID { get; set; }
+        public int StreamingServiceID { get; set; }
+
+        //public List<MovieFilter> MovieFilters { get; set; }
 
     }
 

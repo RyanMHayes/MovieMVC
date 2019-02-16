@@ -1,11 +1,11 @@
-﻿@*model MovieMVC.ViewModels.BrowseTypeViewModel *@
+﻿@model MovieMVC.ViewModels.BrowseTypeViewModel
 
-@model IEnumerable<MovieMVC.Models.MovieFilter>
+@*model IEnumerable<MovieMVC.Models.MovieFilter>*@
 
 @*//<h1>@Model.Title</h1> *@
 
 <ul>
-    @foreach (var filter in Model)
+    @foreach (var filter in Model.Filters)
     {
         <li>
             <a asp-controller="Browse" asp-action="FilterBy" asp-route-filter="@filter">@filter</a>

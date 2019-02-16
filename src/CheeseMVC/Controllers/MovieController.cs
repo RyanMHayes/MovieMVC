@@ -24,7 +24,7 @@ namespace MovieMVC.Controllers
         public IActionResult Index()
         {
             // List<Cheese> cheeses = context.Cheeses.ToList(); --This is what we used before, but the instructions had us implement the line below instead
-            IList<Movie> movies = context.Movies.Include(context => context.Genre).ToList();
+            IList<Movie> movies = context.Movies.Include(context => context.Genre).Include(context => context.StreamingService).ToList();
 
             return View(movies);
         }
