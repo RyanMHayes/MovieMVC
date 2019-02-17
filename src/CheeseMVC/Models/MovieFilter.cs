@@ -19,6 +19,11 @@ namespace MovieMVC.Models
         public MovieStreamingService StreamingService { get; set; }
         public int StreamingServiceID { get; set; }
 
+
+        public string Value { get; set; }
+
+        public List<MovieFilter> MovieFilters { get; set; }
+
         //public List<MovieFilter> MovieFilters { get; set; }
 
     }

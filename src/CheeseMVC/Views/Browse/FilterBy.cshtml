@@ -1,16 +1,42 @@
 ﻿@model MovieMVC.ViewModels.BrowseTypeViewModel 
 <h1>@Model.Title</h1>
 
-<table>
-    @foreach (var movieFilter in Model.MovieFilters)
-    {
-        <tr>
-            <td>
-                <a asp-controller="Browse"
-                   asp-action="MovieListings"
-                   asp-route-filter="@Model.Filter"
-                   asp-route-value="@movieFilter">@movieFilter</a>
-            </td>
-        </tr>
-    }
+
+@if (Model.Filter == MovieMVC.Models.BrowseType.Genre)
+{
+    
+    <table>
+        @foreach (var genre in Model.Genres)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Browse"
+                       asp-action="MovieListings"
+                       asp-route-filter="@Model.Filter"
+                       asp-route-value="@genre.Genre">@genre.Genre</a>
+                </td>
+            </tr>
+        }
 </table>
+
+}
+
+
+else
+{
+
+    <table>
+        @foreach (var streamingService in Model.StreamingServices)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Browse"
+                       asp-action="MovieListings"
+                       asp-route-filter="@Model.Filter"
+                       asp-route-value="@streamingService.StreamingService">@streamingService.StreamingService</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+}

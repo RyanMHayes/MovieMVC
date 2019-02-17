@@ -10,7 +10,12 @@ namespace MovieMVC.ViewModels
     {
         public BrowseType Filter { get; set; }
 
-        public IEnumerable<MovieFilter> MovieFilters { get; set; } //change to Fields or no???
+        public List<MovieFilter> MovieFilters { get; set; } //Was an IEnumerable, now a List
 
+        public MovieGenre Genre { get; set; }
+        public MovieStreamingService StreamingService { get; set; }
+
+        public List<MovieGenre> Genres { get; set;}
+        public List<MovieStreamingService> StreamingServices { get; set; }
     }
 }

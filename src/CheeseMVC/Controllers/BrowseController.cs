@@ -39,9 +39,15 @@ namespace MovieMVC.Controllers
 
         public IActionResult FilterBy(BrowseType filter)
         {
-            BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
+            //BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
 
-            IEnumerable<MovieFilter> movieFilters;
+            //IEnumerable<MovieFilter> movieFilters;
+
+            //List<MovieFilter> movieFilters = new List();
+
+
+            //List<MovieFilter> items = context.MovieFilters.Include(item => MovieFilter.GenreID == id).ToList(); ****Maybe use elsewhere, for MovieListings
+
 
             //************Maybe stop trying to use the Techjobs method.
             //Maybe try to access these things just through Dbcontext
@@ -49,24 +55,55 @@ namespace MovieMVC.Controllers
             //****Really, stop.  Try using LINQ to access the necessary data.
 
 
-            switch (filter)
+            /*switch (filter)
             {
                 case BrowseType.Genre:
                 default:
-                    movieFilters = context.Genres.Include(context => context.Genre).ToList().Cast<MovieFilter>();
+                    List<MovieGenre> movieFilters = context.Genres.ToList();
                     break;
                 case BrowseType.StreamingService:
-                    movieFilters = context.StreamingServices.ToList().Cast<MovieFilter>();
+                    List<MovieStreamingService> movieFilters = context.StreamingServices.ToList();
                     break;
 
             }
 
-            //movieViewModel.Fields = context.Genres.ToList().Cast<MovieFilter>();
-            movieViewModel.MovieFilters = movieFilters;
-            movieViewModel.Title = "Movies filtered by" + filter;
-            movieViewModel.Filter = filter;
+            */
 
-            return View(movieViewModel);
+            if (filter == BrowseType.Genre)
+            {
+                List<MovieGenre> movieFilters = context.Genres.ToList();
+
+                BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel
+                {
+                    Genres = movieFilters
+
+
+                };
+
+                movieViewModel.Title = "Movies filtered by" + filter;
+                movieViewModel.Filter = filter;
+
+                return View(movieViewModel);
+            }
+
+            else 
+            {
+                List<MovieStreamingService> movieFilters = context.StreamingServices.ToList();
+
+                BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel
+                {
+                    StreamingServices = movieFilters,
+
+
+                };
+
+                movieViewModel.Title = "Movies filtered by" + filter;
+                movieViewModel.Filter = filter;
+
+                return View(movieViewModel);
+            }
+
+        
 
             /*
 
