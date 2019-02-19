@@ -28,47 +28,12 @@ namespace MovieMVC.Controllers
             return View(browseTypeViewModel);
 
 
-            //IList<MovieFilter> filters = context.MovieFilters.ToList();
-
-            //return View(filters);
-
-
-
         }
 
 
         public IActionResult FilterBy(BrowseType filter)
         {
-            //BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
-
-            //IEnumerable<MovieFilter> movieFilters;
-
-            //List<MovieFilter> movieFilters = new List();
-
-
-            //List<MovieFilter> items = context.MovieFilters.Include(item => MovieFilter.GenreID == id).ToList(); ****Maybe use elsewhere, for MovieListings
-
-
-            //************Maybe stop trying to use the Techjobs method.
-            //Maybe try to access these things just through Dbcontext
-
-            //****Really, stop.  Try using LINQ to access the necessary data.
-
-
-            /*switch (filter)
-            {
-                case BrowseType.Genre:
-                default:
-                    List<MovieGenre> movieFilters = context.Genres.ToList();
-                    break;
-                case BrowseType.StreamingService:
-                    List<MovieStreamingService> movieFilters = context.StreamingServices.ToList();
-                    break;
-
-            }
-
-            */
-
+            
             if (filter == BrowseType.Genre)
             {
                 List<MovieGenre> movieFilters = context.Genres.ToList();
@@ -103,42 +68,19 @@ namespace MovieMVC.Controllers
                 return View(movieViewModel);
             }
 
-        
-
-            /*
-
-            if (filter.Equals(BrowseType.Genre))
-            {
-                //fields = context.Genres.ToList().Cast<MovieFilter>();
-
-                IList<MovieFilter> fields = context.Genres.Include(context => context.Genre).ToList();
-
-            }
-
-            else
-            {
-                fields = context.StreamingServices.ToList().Cast<MovieFilter>();
-
-            }
-
-            //movieViewModel.Fields = fields;
-            movieViewModel.Title = "Movies filtered by" + filter;
-            movieViewModel.Filter = filter;
-
-            return View(movieViewModel);
-
-            */
 
         }
 
-        public IActionResult MovieListings(BrowseType filter)
+        public IActionResult MovieListings(string filter, int valueID)   //, int id)
         {
-            if (filter.Equals(BrowseType.Genre))
+            if (filter.Equals("Genre"))
             {
+                
+                //List<Movie> movies = context.Genres.Include(movie => movie.Movies).Where(movie => movie.ID == id).ToList();
 
-                SearchMovieViewModel movieViewModel = new SearchMovieViewModel();
-                movieViewModel.Genres = context.Genres.ToList();
-                movieViewModel.Title = "Choose a " + filter; //*********
+                BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
+                movieViewModel.Movies = context.Movies.Where(m => m.GenreID == valueID).ToList();
+                movieViewModel.Title = "Movies filtered by " + filter; 
                 return View(movieViewModel);
 
             }
@@ -146,7 +88,10 @@ namespace MovieMVC.Controllers
             else
             {
 
-                return View();
+                BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
+                movieViewModel.Movies = context.Movies.Where(m => m.StreamingServiceID == valueID).ToList();
+                movieViewModel.Title = "Movies filtered by " + filter;
+                return View(movieViewModel);
 
             }
 

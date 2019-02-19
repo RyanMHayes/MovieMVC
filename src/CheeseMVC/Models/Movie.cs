@@ -22,7 +22,8 @@ namespace MovieMVC.Models
         public MovieStreamingService StreamingService { get; set; }
         public int StreamingServiceID { get; set; }
 
-        public IList<MovieFilter> MovieFilters { get; set; }
+        //public IList<MovieFilter> MovieFilters { get; set; }
+        //public List<MovieGenre> Genres { get; set; }
 
 
     }

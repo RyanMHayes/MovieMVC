@@ -17,5 +17,9 @@ namespace MovieMVC.ViewModels
 
         public List<MovieGenre> Genres { get; set;}
         public List<MovieStreamingService> StreamingServices { get; set; }
+
+        public List<Movie> Movies { get; set; }
+
     }
+
 }

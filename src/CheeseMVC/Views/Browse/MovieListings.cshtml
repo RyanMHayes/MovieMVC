@@ -1,4 +1,4 @@
-﻿@model MovieMVC.ViewModels.SearchMovieViewModel
+﻿@model MovieMVC.ViewModels.BrowseTypeViewModel
 
 <h1>@Model.Title</h1>
 
@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td>Streaming Service</td>
-                <td>@movie.StreamingService</td>
+                <td>@movie.StreamingService</td> @*I get an error when I do movie.StreamingService.StreamingService.  VS likes it, but the web page doesn't.*@
             </tr>
             <tr>
                 <td>Genre</td>
