@@ -14,6 +14,7 @@ namespace MovieMVC.ViewModels
 
         public MovieGenre Genre { get; set; }
         public MovieStreamingService StreamingService { get; set; }
+        public Movie Movie { get; set; } // I added this.  Maybe it will fix this.  Or maybe it will break it.
 
         public List<MovieGenre> Genres { get; set;}
         public List<MovieStreamingService> StreamingServices { get; set; }

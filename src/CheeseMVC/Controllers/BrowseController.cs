@@ -71,29 +71,79 @@ namespace MovieMVC.Controllers
 
         }
 
-        public IActionResult MovieListings(string filter, int valueID)   //, int id)
+        public IActionResult MovieListings()   //, string filter, int valueID, 
         {
-            if (filter.Equals("Genre"))
-            {
-                
-                //List<Movie> movies = context.Genres.Include(movie => movie.Movies).Where(movie => movie.ID == id).ToList();
 
-                BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
-                movieViewModel.Movies = context.Movies.Where(m => m.GenreID == valueID).ToList();
-                movieViewModel.Title = "Movies filtered by " + filter; 
-                return View(movieViewModel);
+
+            //List<Movie> movies = context.Genres.Include(movie => movie.Movies).Where(movie => movie.ID == id).ToList();
+
+            
+
+            List<Movie> filteredMovies = new List<Movie>();
+            string filter = HttpContext.Request.Query["filter"].ToString();  //*********Working!
+            string value = HttpContext.Request.Query["value"].ToString();  //*********Working!
+            List<Movie> allMovies = context.Movies.ToList();
+
+
+
+            //BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
+
+
+            //MovieGenre genreFilter = context.Genres.Include****************come back to here
+            //Make a LINQ for for value of DRAMA or whatever genre
+
+
+            //string value = "Genre";
+            //string x = System.Web.HttpUtility.ParseQueryString(queryString).Get("filter");
+
+            List<Movie> filteredMovies2 = context.Movies.Where(m => m.Genre.Genre.ToString() == value).ToList();
+
+            if (filter == "Genre")
+            {
+                //foreach (Movie movie in allMovies)
+                //{
+                    //if (movie.Genre.ToString() == value) 
+                    //{ 
+
+                        //filteredMovies.Add(movie);
+
+                    //}
+
+                //}
 
             }
+            //BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
+            //movieViewModel.Movies = context.Movies.Where(m => m.GenreID == valueID).ToList();
+            //movieViewModel.Movies = context.Movies.Include(m => m.StreamingServiceID)
+            //movieViewModel.Movies = context.Movies.Where(m => m.GenreID == m.Genre.ID).ToList();  //Where value of selected genre == m.GenreID or m.Genre.ID
 
-            else
+
+            BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel
             {
+                Movies = filteredMovies2,
+                //StreamingServices = context.StreamingServices.ToList(),
+                //Genres = context.Genres.ToList(),
+            };
 
-                BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
-                movieViewModel.Movies = context.Movies.Where(m => m.StreamingServiceID == valueID).ToList();
-                movieViewModel.Title = "Movies filtered by " + filter;
-                return View(movieViewModel);
 
-            }
+            ViewBag.Title = "Movies filtered by " + value;
+            //movieViewModel.Movies = filteredMovies;
+            
+            //movieViewModel.Genres = context.Genres.ToList();
+            //movieViewModel.StreamingService = 
+            return View(filteredMovies2);
+
+            //}
+
+            //else
+            //{
+            //
+            //    BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
+            //    movieViewModel.Movies = context.Movies.Where(m => m.StreamingServiceID == valueID).ToList();
+            //    movieViewModel.Title = "Movies filtered by " + filter;
+            //    return View(movieViewModel);
+
+            //}
 
         }
 

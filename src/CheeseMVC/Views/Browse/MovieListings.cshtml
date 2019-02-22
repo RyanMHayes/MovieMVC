@@ -1,13 +1,13 @@
-﻿@model MovieMVC.ViewModels.BrowseTypeViewModel
+﻿@model List<MovieMVC.Models.Movie>
 
-<h1>@Model.Title</h1>
+<h1>@ViewBag.Title</h1>
 
-@if (Model.Movies != null)
+@if (Model != null)
 {
+    
+    <h3>@Model.Count Result(s)</h3>
 
-    <h3>@Model.Movies.Count Result(s)</h3>
-
-    @foreach (var movie in Model.Movies)
+    @foreach (var movie in Model)
     {
         <table class="movie-listing">
             <tr>

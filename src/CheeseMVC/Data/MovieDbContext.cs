@@ -20,7 +20,7 @@ namespace MovieMVC.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MovieFilter>()    //Was MovieFilter (CheeseMenu in CheeseMVC).  Should it be Movie, or MF?
+            modelBuilder.Entity<Movie>()    //Was MovieFilter (CheeseMenu in CheeseMVC).  Should it be Movie, or MF?
                 .HasKey(c => new { c.GenreID, c.StreamingServiceID });
 
             //modelBuilder.Entity<Movie>().Ignore(c => c.Genre);
@@ -28,14 +28,14 @@ namespace MovieMVC.Data
             //modelBuilder.Entity<Movie>().Ignore(c => c.StreamingService);
 
 
-            modelBuilder.Entity<MovieFilter>() //These were MovieFilter class [or movie and movies below]
+            modelBuilder.Entity<Movie>() //These were MovieFilter class [or movie and movies below]
                 .HasOne(pt => pt.Genre)
-                .WithMany(p => p.MovieFilters) //These were MovieFilters
+                .WithMany(p => p.Movies) //These were MovieFilters
                 .HasForeignKey(pt => pt.GenreID);
 
-            modelBuilder.Entity<MovieFilter>()
+            modelBuilder.Entity<Movie>()
                 .HasOne(pt => pt.StreamingService)
-                .WithMany(t => t.MovieFilters)
+                .WithMany(t => t.Movies)
                 .HasForeignKey(pt => pt.StreamingServiceID);
 
 
