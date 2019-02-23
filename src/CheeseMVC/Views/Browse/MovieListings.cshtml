@@ -4,25 +4,35 @@
 
 @if (Model != null)
 {
-    
     <h3>@Model.Count Result(s)</h3>
 
-    @foreach (var movie in Model)
-    {
-        <table class="movie-listing">
-            <tr>
-                <td>Title</td>
-                <td>@movie.Title</td>
-            </tr>
-            <tr>
-                <td>Streaming Service</td>
-                <td>@movie.StreamingService</td> @*I get an error when I do movie.StreamingService.StreamingService.  VS likes it, but the web page doesn't.*@
-            </tr>
-            <tr>
-                <td>Genre</td>
-                <td>@movie.Genre</td>
-            </tr>
+    <table class="table">
 
-        </table>
+        <tr>
+            <th>Title</th>
+            <th>Streaming Service</th>
+            <td>Genre</td>
+        </tr>
+
+
+
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.StreamingService.StreamingService</td>
+                <td>@movie.Genre.Genre</td>
+            </tr>
+        }
+
+    </table>
+
+    
+    @if (Model.Count == 0)
+    {
+        <p>No movies have been added yet!</p>
     }
+
+
+
 }

@@ -45,7 +45,7 @@ namespace MovieMVC.Controllers
 
                 };
 
-                movieViewModel.Title = "Movies filtered by" + filter;
+                movieViewModel.Title = "Movies filtered by " + filter;
                 movieViewModel.Filter = filter;
 
                 return View(movieViewModel);
@@ -62,88 +62,56 @@ namespace MovieMVC.Controllers
 
                 };
 
-                movieViewModel.Title = "Movies filtered by" + filter;
+                movieViewModel.Title = "Choose a " + filter;
                 movieViewModel.Filter = filter;
 
                 return View(movieViewModel);
             }
 
-
         }
+
 
         public IActionResult MovieListings()   //, string filter, int valueID, 
         {
 
-
-            //List<Movie> movies = context.Genres.Include(movie => movie.Movies).Where(movie => movie.ID == id).ToList();
-
-            
-
-            List<Movie> filteredMovies = new List<Movie>();
             string filter = HttpContext.Request.Query["filter"].ToString();  //*********Working!
             string value = HttpContext.Request.Query["value"].ToString();  //*********Working!
-            List<Movie> allMovies = context.Movies.ToList();
 
+            List<Movie> moviesFilteredByGenre = context.Movies.
+                Include(context => context.Genre).
+                Include(context => context.StreamingService)
+                .Where(m => m.Genre.Genre.ToString() == value)
+                .ToList();
 
-
-            //BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
-
-
-            //MovieGenre genreFilter = context.Genres.Include****************come back to here
-            //Make a LINQ for for value of DRAMA or whatever genre
-
-
-            //string value = "Genre";
-            //string x = System.Web.HttpUtility.ParseQueryString(queryString).Get("filter");
-
-            List<Movie> filteredMovies2 = context.Movies.Where(m => m.Genre.Genre.ToString() == value).ToList();
-
-            if (filter == "Genre")
-            {
-                //foreach (Movie movie in allMovies)
-                //{
-                    //if (movie.Genre.ToString() == value) 
-                    //{ 
-
-                        //filteredMovies.Add(movie);
-
-                    //}
-
-                //}
-
-            }
-            //BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
-            //movieViewModel.Movies = context.Movies.Where(m => m.GenreID == valueID).ToList();
-            //movieViewModel.Movies = context.Movies.Include(m => m.StreamingServiceID)
-            //movieViewModel.Movies = context.Movies.Where(m => m.GenreID == m.Genre.ID).ToList();  //Where value of selected genre == m.GenreID or m.Genre.ID
-
-
-            BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel
-            {
-                Movies = filteredMovies2,
-                //StreamingServices = context.StreamingServices.ToList(),
-                //Genres = context.Genres.ToList(),
-            };
+            List<Movie> moviesFilteredByStreamingService = context.Movies
+                .Include(context => context.Genre)
+                .Include(context => context.StreamingService)
+                .Where(m => m.StreamingService.StreamingService.ToString() == value)
+                .ToList();
 
 
             ViewBag.Title = "Movies filtered by " + value;
-            //movieViewModel.Movies = filteredMovies;
-            
-            //movieViewModel.Genres = context.Genres.ToList();
-            //movieViewModel.StreamingService = 
-            return View(filteredMovies2);
 
-            //}
+            if (filter == "Genre")
+            {
+                return View(moviesFilteredByGenre);
+            }
 
-            //else
+
+            else
+            {
+                return View(moviesFilteredByStreamingService);
+            }
+
+
+
+            //BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel
             //{
-            //
-            //    BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel();
-            //    movieViewModel.Movies = context.Movies.Where(m => m.StreamingServiceID == valueID).ToList();
-            //    movieViewModel.Title = "Movies filtered by " + filter;
-            //    return View(movieViewModel);
+            //Movies = filteredMovies2,
+            //StreamingServices = context.StreamingServices.ToList(),
+            //Genres = context.Genres.ToList(),
+            //};
 
-            //}
 
         }
 
@@ -155,6 +123,3 @@ namespace MovieMVC.Controllers
 }
 
 
-                //movieViewModel.Movies = context.Movies.ToList();
-                //movieViewModel.Title = "All movies by"; //*********
-                //return View(/*"Movies",*/ movieViewModel);

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 // MODEL ***
@@ -19,6 +20,7 @@ namespace MovieMVC.Models
         public int GenreID { get; set; }
 
         //[ForeignKey("StreamingServiceID")]
+        [Display(Name = "Streaming Service")]
         public MovieStreamingService StreamingService { get; set; }
         public int StreamingServiceID { get; set; }
 

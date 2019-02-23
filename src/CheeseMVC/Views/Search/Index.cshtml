@@ -1,0 +1,55 @@
+﻿@model MovieMVC.ViewModels.SearchViewModel
+
+<h1>Model.Title</h1>
+
+<form action="/Search/Results">
+    <p>
+        <label asp-for="SearchTerm"></label>
+        <input asp-for="SearchTerm" />
+    </p>
+
+    <input type="submit" value="Search" />
+
+</form>
+
+
+<hr />
+
+
+@if (Model.Movies != null)
+{
+
+    <h3>@Model.Movies.Count Result(s)</h3>
+
+    <table class="table">
+
+        <tr>
+            <th>Title</th>
+            <th>Streaming Service</th>
+            <td>Genre</td>
+        </tr>
+        
+
+        @foreach (var movie in Model.Movies)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.StreamingService.StreamingService</td>
+                <td>@movie.Genre.Genre</td>
+            </tr>
+        }
+
+    </table>
+
+
+    @if (Model.Movies.Count == 0)
+    {
+        <p>We didn't find any movies by that name.  Try again!</p>
+    }
+
+
+
+
+
+
+}
