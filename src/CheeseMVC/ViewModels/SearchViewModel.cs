@@ -11,10 +11,16 @@ namespace MovieMVC.ViewModels
     {
         // The search results
         public List<Movie> Movies { get; set; }
+        public List<MovieGenre> Genres { get; set; }
+        public List<Movie> StreamingServices { get; set; }
 
-        //public List<MovieGenre> Genres { get; set; }
+        public Movie Movie { get; set; }
 
-        //public List<Movie> StreamingServices { get; set; }
+        public MovieGenre Genre { get; set; }
+
+        [Display(Name = "Streaming Service")]
+        public MovieStreamingService StreamingService { get; set; }
+
 
 
         //public BrowseType Filter { get; set; }

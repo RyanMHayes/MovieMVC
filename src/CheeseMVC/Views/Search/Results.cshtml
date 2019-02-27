@@ -1,0 +1,41 @@
+﻿@model List<MovieMVC.Models.Movie>
+
+
+
+@if (Model != null)
+{
+
+    <h3>@Model.Count Result(s)</h3>
+
+    <table class="table">
+
+        <tr>
+            <th>Title</th>
+            <th>Streaming Service</th>
+            <td>Genre</td>
+        </tr>
+
+
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.StreamingService.StreamingService</td>
+                <td>@movie.Genre.Genre</td>
+            </tr>
+        }
+
+    </table>
+
+
+    @if (Model.Count == 0)
+    {
+        <p>We didn't find any movies by that name.  Try again!</p>
+    }
+
+
+
+
+
+
+}

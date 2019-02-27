@@ -35,31 +35,31 @@ namespace MovieMVC.Controllers
                                                                                         //add the movie to the list.
 
             //If it doesn't work, do the LINQ like with Browse.
-            List<Movie> moviesBySearch = new List<Movie>();
+            //List<Movie> moviesBySearch = new List<Movie>();
             List<Movie> allMovies = context.Movies.ToList();
             string searchTerm = searchViewModel.SearchTerm;
 
-            if (searchViewModel.SearchTerm.Equals(""))
-            {
-                foreach (Movie movie in allMovies)
-                {
-                    if (movie.ToString().ToLower().Contains(searchTerm))  //Do I need
-                    {
-                        moviesBySearch.Add(movie);
-
-                    }
-
-                }
-
-                searchViewModel.Movies = moviesBySearch;
+            //if (searchViewModel.SearchTerm != "")
+            //{
+                //return View(); //Used to be "Index"
+                //*******Need some kind of error message
+            //}
 
 
-                return View("Index", searchViewModel);
-            }
 
+            //if (searchViewModel.SearchTerm.Equals(""))
+            //List<Movie> moviesBySearch = new List<Movie>();
+            List<Movie> moviesBySearch = context.Movies
+                .Include(m => m.Genre)
+                .Include(m => m.StreamingService)
+                .Where(m => m.Title.ToString().ToLower().Contains(searchTerm.ToLower()))
+                .ToList();
 
-            return View("Index");
+            searchViewModel.Movies = moviesBySearch;
+            searchViewModel.Title = "Results for " + searchTerm;
 
+            return View("Index", searchViewModel); //Was going to have it all on results page--wasn't working.
+            
         }
 
 
