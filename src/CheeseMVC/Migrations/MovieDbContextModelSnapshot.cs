@@ -40,23 +40,6 @@ namespace MovieMVC.Migrations
                     b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("MovieMVC.Models.MovieFilter", b =>
-                {
-                    b.Property<int>("GenreID");
-
-                    b.Property<int>("StreamingServiceID");
-
-                    b.Property<int>("ID");
-
-                    b.HasKey("GenreID", "StreamingServiceID");
-
-                    b.HasIndex("ID");
-
-                    b.HasIndex("StreamingServiceID");
-
-                    b.ToTable("MovieFilters");
-                });
-
             modelBuilder.Entity("MovieMVC.Models.MovieGenre", b =>
                 {
                     b.Property<int>("ID")
@@ -86,28 +69,10 @@ namespace MovieMVC.Migrations
                     b.HasOne("MovieMVC.Models.MovieGenre", "Genre")
                         .WithMany("Movies")
                         .HasForeignKey("GenreID")
-                        .OnDelete(DeleteBehavior.Cascade); //Was Cascade for all these.  I'm changing it to see what happens.
-
-                    b.HasOne("MovieMVC.Models.MovieStreamingService", "StreamingService")
-                        .WithMany()
-                        .HasForeignKey("StreamingServiceID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MovieMVC.Models.MovieFilter", b =>
-                {
-                    b.HasOne("MovieMVC.Models.MovieGenre", "Genre")
-                        .WithMany("MovieFilters")
-                        .HasForeignKey("GenreID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MovieMVC.Models.Movie")
-                        .WithMany("MovieFilters")
-                        .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MovieMVC.Models.MovieStreamingService", "StreamingService")
-                        .WithMany("MovieFilters")
+                        .WithMany("Movies")
                         .HasForeignKey("StreamingServiceID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

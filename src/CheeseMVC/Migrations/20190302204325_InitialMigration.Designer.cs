@@ -11,7 +11,7 @@ using System;
 namespace MovieMVC.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20190215201841_InitialMigration")]
+    [Migration("20190302204325_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,23 +39,6 @@ namespace MovieMVC.Migrations
                     b.HasIndex("StreamingServiceID");
 
                     b.ToTable("Movies");
-                });
-
-            modelBuilder.Entity("MovieMVC.Models.MovieFilter", b =>
-                {
-                    b.Property<int>("GenreID");
-
-                    b.Property<int>("StreamingServiceID");
-
-                    b.Property<int>("ID");
-
-                    b.HasKey("GenreID", "StreamingServiceID");
-
-                    b.HasIndex("ID");
-
-                    b.HasIndex("StreamingServiceID");
-
-                    b.ToTable("MovieFilters");
                 });
 
             modelBuilder.Entity("MovieMVC.Models.MovieGenre", b =>
@@ -90,25 +73,7 @@ namespace MovieMVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MovieMVC.Models.MovieStreamingService", "StreamingService")
-                        .WithMany()
-                        .HasForeignKey("StreamingServiceID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MovieMVC.Models.MovieFilter", b =>
-                {
-                    b.HasOne("MovieMVC.Models.MovieGenre", "Genre")
-                        .WithMany("MovieFilters")
-                        .HasForeignKey("GenreID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MovieMVC.Models.Movie")
-                        .WithMany("MovieFilters")
-                        .HasForeignKey("ID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MovieMVC.Models.MovieStreamingService", "StreamingService")
-                        .WithMany("MovieFilters")
+                        .WithMany("Movies")
                         .HasForeignKey("StreamingServiceID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -16,7 +16,7 @@ namespace MovieMVC.Models
 
         public List<Movie> Movies { get; set; }
 
-        public List<MovieFilter> MovieFilters { get; set; }
+        //public List<MovieFilter> MovieFilters { get; set; }
 
 
 

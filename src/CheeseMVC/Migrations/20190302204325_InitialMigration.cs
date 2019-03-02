@@ -62,47 +62,6 @@ namespace MovieMVC.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "MovieFilters",
-                columns: table => new
-                {
-                    GenreID = table.Column<int>(nullable: false),
-                    StreamingServiceID = table.Column<int>(nullable: false),
-                    ID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MovieFilters", x => new { x.GenreID, x.StreamingServiceID });
-                    table.ForeignKey(
-                        name: "FK_MovieFilters_Genres_GenreID",
-                        column: x => x.GenreID,
-                        principalTable: "Genres",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MovieFilters_Movies_ID",
-                        column: x => x.ID,
-                        principalTable: "Movies",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict); //Was Cascade
-                    table.ForeignKey(
-                        name: "FK_MovieFilters_StreamingServices_StreamingServiceID",
-                        column: x => x.StreamingServiceID,
-                        principalTable: "StreamingServices",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MovieFilters_ID",
-                table: "MovieFilters",
-                column: "ID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MovieFilters_StreamingServiceID",
-                table: "MovieFilters",
-                column: "StreamingServiceID");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Movies_GenreID",
                 table: "Movies",
@@ -116,9 +75,6 @@ namespace MovieMVC.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "MovieFilters");
-
             migrationBuilder.DropTable(
                 name: "Movies");
 

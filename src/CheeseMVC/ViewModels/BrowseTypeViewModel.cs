@@ -20,7 +20,6 @@ namespace MovieMVC.ViewModels
 
         public List<MovieGenre> Genres { get; set;}
         public List<MovieStreamingService> StreamingServices { get; set; }
-        public List<MovieFilter> MovieFilters { get; set; } //Was an IEnumerable, now a List
 
         public List<Movie> Movies { get; set; }
 
