@@ -32,5 +32,10 @@
     <p>No movies have been added yet!</p>
 }
 
+    <p>See a mistake?  Let's <a asp-controller="Movie" asp-action="Remove">delete that entry.</a> </p>
+    <p>Then we can <a asp-controller="Movie" asp-action="Add">add it</a> again to the database!</p>
 
-<a asp-controller="Genre" asp-action="Add">Add Genre</a> | <a asp-controller="Movie" asp-action="Add">Add Movie</a> | <a asp-controller="StreamingService" asp-action="Add">Add Streaming Service</a>
+    <br />
+
+    <a asp-controller="Movie" asp-action="Add">Add Movie</a> | <a asp-controller="Genre" asp-action="Add">Add Genre</a> | <a asp-controller="StreamingService" asp-action="Add">Add Streaming Service</a>
+    

@@ -67,26 +67,26 @@ namespace MovieMVC.Controllers
         }
 
 
-        //public IActionResult Remove()
-        //{
-        //    ViewBag.title = "Remove Cheeses";
-        //    ViewBag.cheeses = context.Cheeses.ToList();
-        //    return View();
-        //}
+        public IActionResult Remove()
+        {
+            ViewBag.title = "Remove Movies";
+            List<Movie> moviesToRemove = context.Movies.ToList();
+            return View(moviesToRemove);
+        }
 
 
-        //[HttpPost]
-        //public IActionResult Remove(int[] cheeseIds)
-        //{
-        //    foreach (int cheeseId in cheeseIds)
-        //    {
-        //        Movie theCheese = context.Cheeses.Single(c => c.ID == cheeseId);
-        //        context.Cheeses.Remove(theCheese);
-        //    }
+        [HttpPost]
+        public IActionResult Remove(int[] movieIDs)
+        {
+            foreach (int movieID in movieIDs)
+            {
+                Movie theMovie = context.Movies.Single(c => c.ID == movieID);
+                context.Movies.Remove(theMovie);
+            }
 
-        //    context.SaveChanges();
+            context.SaveChanges();
 
-        //    return Redirect("/");
-       // }
+            return Redirect("/");
+        }
     }
 }

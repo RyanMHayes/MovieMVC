@@ -1,15 +1,17 @@
-﻿<h1>@ViewBag.title</h1>
+﻿@model List<MovieMVC.Models.Movie>
+
+<h1>@ViewBag.title</h1>
 
 @*VIEW, REMOVE ****@
 
 <form method="post">
 
-    @foreach (var cheese in ViewBag.cheeses)
+    @foreach (var movie in Model)
     {
-        <input type="checkbox" name="cheeseIds" id="@cheese.ID" value="@cheese.ID" /> 
-        <label for="@cheese.ID">@cheese.Name</label>
+        <input type="checkbox" name="movieIDs" id="@movie.ID" value="@movie.ID" />
+        <label for="@movie.ID">@movie.Title</label>
         <br />
     }
 
-    <input type="submit" value="Remove Selected Cheese(s)" />
+    <input type="submit" value="Remove Selected Movie(s)" />
 </form>
