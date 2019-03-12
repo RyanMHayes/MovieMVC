@@ -28,9 +28,9 @@ namespace MovieMVC.Data
 
 
 
-            modelBuilder.Entity<Movie>() //These were MovieFilter class [or movie and movies below]
+            modelBuilder.Entity<Movie>() 
                 .HasOne(pt => pt.Genre)
-                .WithMany(p => p.Movies) //These were MovieFilters
+                .WithMany(p => p.Movies) 
                 .HasForeignKey(pt => pt.GenreID);
 
             modelBuilder.Entity<Movie>()
@@ -40,7 +40,7 @@ namespace MovieMVC.Data
 
         }
 
-        public static implicit operator MovieDbContext(BrowseController v) //Was MenuController.  Should it be browse, or something else?
+        public static implicit operator MovieDbContext(BrowseController v) 
         {
             throw new NotImplementedException();
         }

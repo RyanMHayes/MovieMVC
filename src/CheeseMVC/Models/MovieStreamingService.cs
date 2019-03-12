@@ -6,17 +6,12 @@ using System.Threading.Tasks;
 
 namespace MovieMVC.Models
 {
-    public class MovieStreamingService //: MovieFilter  *****Not sure if this is right.  Hiding inheritance of MovieFilter class
+    public class MovieStreamingService 
     {
-        //no additional members yet.  See MovieFilter.cs
-
         public int ID { get; set; }
 
         [Display(Name = "Streaming Service")]
         public string StreamingService { get; set; }
-
-        //public Movie Movie { get; set; }
-        //public int MovieID { get; set; }
 
         public List<Movie> Movies { get; set; }
 

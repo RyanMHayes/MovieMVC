@@ -20,10 +20,6 @@ namespace MovieMVC.ViewModels
         [Display(Name = "Streaming Service")]
         public int StreamingServiceID { get; set; }
 
-        //[Display(Name = "Streaming Service(s) Providing the Above Movie")]
-        //public MovieStreamingService StreamingService { get; set; } //I change type string to type MovieStreamingService.
-
-
         [Required]
         [Display(Name = "Genre")]
         public int GenreID { get; set; }
@@ -42,8 +38,6 @@ namespace MovieMVC.ViewModels
 
             foreach (MovieGenre genre in genres)
 
-
-                // <option value="0">Hard</option>
                 Genres.Add(new SelectListItem
                 {
                     Value = genre.ID.ToString(),

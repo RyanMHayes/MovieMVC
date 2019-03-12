@@ -6,8 +6,6 @@ using MovieMVC.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-// CONTROLLER ***
-
 namespace MovieMVC.Controllers
 {
     public class MovieController : Controller
@@ -23,7 +21,6 @@ namespace MovieMVC.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            // List<Cheese> cheeses = context.Cheeses.ToList(); --This is what we used before, but the instructions had us implement the line below instead
             IList<Movie> movies = context.Movies.Include(context => context.Genre).Include(context => context.StreamingService).ToList();
 
             return View(movies);
@@ -46,10 +43,7 @@ namespace MovieMVC.Controllers
                 MovieGenre newMovieGenre = context.Genres.SingleOrDefault(c => c.ID == addMovieViewModel.GenreID);
                 MovieStreamingService newMovieStreamingService = context.StreamingServices.SingleOrDefault(c => c.ID == addMovieViewModel.StreamingServiceID);
 
-                //*********Do I need the same for Streaming Service?
 
-
-                // Add the new cheese to my existing cheeses
                 Movie newMovie = new Movie
                 {
                     Title = addMovieViewModel.Name,

@@ -8,9 +8,9 @@ namespace MovieMVC.ViewModels
 {
     public class AddGenreViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "You must include the name of the genre you'd like to add.")]
         [Display(Name = "Genre")]
-        public string Name { get; set; }  //This was Name.  Fix this elsewhere in the View [Never mind]
+        public string Name { get; set; }  
 
 
 

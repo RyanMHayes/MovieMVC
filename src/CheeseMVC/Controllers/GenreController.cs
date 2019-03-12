@@ -48,7 +48,7 @@ namespace MovieMVC.Controllers
                 context.Genres.Add(newGenre);
                 context.SaveChanges();
 
-                return Redirect("/Movie/Add"); //******needs to redirect to add entry page
+                return Redirect("/Movie/Add"); 
             }
 
             return View(addGenreViewModel);

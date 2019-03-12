@@ -39,7 +39,7 @@ namespace MovieMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Add the new genre to my existing genres
+                
                 MovieStreamingService newStreamingService = new MovieStreamingService
                 {
                     StreamingService = addStreamingServiceViewModel.Name
@@ -48,7 +48,7 @@ namespace MovieMVC.Controllers
                 context.StreamingServices.Add(newStreamingService);
                 context.SaveChanges();
 
-                return Redirect("/Movie/Add"); //******needs to redirect to add entry page
+                return Redirect("/Movie/Add"); 
             }
 
             return View(addStreamingServiceViewModel);

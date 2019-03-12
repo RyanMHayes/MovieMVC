@@ -71,11 +71,11 @@ namespace MovieMVC.Controllers
         }
 
 
-        public IActionResult MovieListings()   //, string filter, int valueID, 
+        public IActionResult MovieListings()   
         {
 
-            string filter = HttpContext.Request.Query["filter"].ToString();  //*********Working!
-            string value = HttpContext.Request.Query["value"].ToString();  //*********Working!
+            string filter = HttpContext.Request.Query["filter"].ToString();  
+            string value = HttpContext.Request.Query["value"].ToString();  
 
             List<Movie> moviesFilteredByGenre = context.Movies.
                 Include(context => context.Genre).
@@ -103,20 +103,7 @@ namespace MovieMVC.Controllers
                 return View(moviesFilteredByStreamingService);
             }
 
-
-
-            //BrowseTypeViewModel movieViewModel = new BrowseTypeViewModel
-            //{
-            //Movies = filteredMovies2,
-            //StreamingServices = context.StreamingServices.ToList(),
-            //Genres = context.Genres.ToList(),
-            //};
-
-
-        }
-
-
-       
+        }       
 
     }
 

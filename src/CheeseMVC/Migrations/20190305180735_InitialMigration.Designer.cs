@@ -11,7 +11,7 @@ using System;
 namespace MovieMVC.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20190302204325_InitialMigration")]
+    [Migration("20190305180735_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
