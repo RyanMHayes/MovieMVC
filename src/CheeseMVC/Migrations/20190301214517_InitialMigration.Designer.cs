@@ -11,7 +11,7 @@ using System;
 namespace MovieMVC.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20190305180735_InitialMigration")]
+    [Migration("20190301214517_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,22 +23,44 @@ namespace MovieMVC.Migrations
 
             modelBuilder.Entity("MovieMVC.Models.Movie", b =>
                 {
+                    b.Property<int>("GenreID");
+
+                    b.Property<int>("StreamingServiceID");
+
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("GenreID", "StreamingServiceID");
+
+                    b.HasIndex("StreamingServiceID");
+
+                    b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("MovieMVC.Models.MovieFilter", b =>
+                {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("GenreID");
 
+                    b.Property<int?>("MovieFilterID");
+
                     b.Property<int>("StreamingServiceID");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Value");
 
                     b.HasKey("ID");
 
                     b.HasIndex("GenreID");
 
+                    b.HasIndex("MovieFilterID");
+
                     b.HasIndex("StreamingServiceID");
 
-                    b.ToTable("Movies");
+                    b.ToTable("MovieFilters");
                 });
 
             modelBuilder.Entity("MovieMVC.Models.MovieGenre", b =>
@@ -74,6 +96,23 @@ namespace MovieMVC.Migrations
 
                     b.HasOne("MovieMVC.Models.MovieStreamingService", "StreamingService")
                         .WithMany("Movies")
+                        .HasForeignKey("StreamingServiceID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MovieMVC.Models.MovieFilter", b =>
+                {
+                    b.HasOne("MovieMVC.Models.MovieGenre", "Genre")
+                        .WithMany("MovieFilters")
+                        .HasForeignKey("GenreID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MovieMVC.Models.MovieFilter")
+                        .WithMany("MovieFilters")
+                        .HasForeignKey("MovieFilterID");
+
+                    b.HasOne("MovieMVC.Models.MovieStreamingService", "StreamingService")
+                        .WithMany("MovieFilters")
                         .HasForeignKey("StreamingServiceID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

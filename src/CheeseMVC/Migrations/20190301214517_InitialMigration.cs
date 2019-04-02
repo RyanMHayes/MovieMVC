@@ -36,18 +36,52 @@ namespace MovieMVC.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Movies",
+                name: "MovieFilters",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     GenreID = table.Column<int>(nullable: false),
+                    MovieFilterID = table.Column<int>(nullable: true),
                     StreamingServiceID = table.Column<int>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MovieFilters", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_MovieFilters_Genres_GenreID",
+                        column: x => x.GenreID,
+                        principalTable: "Genres",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MovieFilters_MovieFilters_MovieFilterID",
+                        column: x => x.MovieFilterID,
+                        principalTable: "MovieFilters",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MovieFilters_StreamingServices_StreamingServiceID",
+                        column: x => x.StreamingServiceID,
+                        principalTable: "StreamingServices",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Movies",
+                columns: table => new
+                {
+                    GenreID = table.Column<int>(nullable: false),
+                    StreamingServiceID = table.Column<int>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movies", x => x.ID);
+                    table.PrimaryKey("PK_Movies", x => new { x.GenreID, x.StreamingServiceID });
                     table.ForeignKey(
                         name: "FK_Movies_Genres_GenreID",
                         column: x => x.GenreID,
@@ -63,9 +97,19 @@ namespace MovieMVC.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_GenreID",
-                table: "Movies",
+                name: "IX_MovieFilters_GenreID",
+                table: "MovieFilters",
                 column: "GenreID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MovieFilters_MovieFilterID",
+                table: "MovieFilters",
+                column: "MovieFilterID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MovieFilters_StreamingServiceID",
+                table: "MovieFilters",
+                column: "StreamingServiceID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movies_StreamingServiceID",
@@ -75,6 +119,9 @@ namespace MovieMVC.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "MovieFilters");
+
             migrationBuilder.DropTable(
                 name: "Movies");
 
